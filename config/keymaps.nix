@@ -73,7 +73,7 @@
         silent = true;
         desc = "Find files in config";
       };
-      action = ":Telescope find_files cwd=~/config<CR>";
+      action = ":Telescope find_files cwd=~/.config/nixos<CR>";
     }
     {
       key = "<leader>fw";
