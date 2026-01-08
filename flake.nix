@@ -7,9 +7,12 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs =
-    { self, flake-parts, ... }@inputs:
-    flake-parts.lib.mkFlake { inherit inputs; } {
+  outputs = {
+    self,
+    flake-parts,
+    ...
+  } @ inputs:
+    flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "x86_64-linux"
         "aarch64-linux"
@@ -37,18 +40,43 @@
         default = ./config;
       };
 
-      perSystem =
-        { system, ... }:
-        {
-          # You can define actual Nixvim configurations here
-          nixvimConfigurations = {
-            default = inputs.nixvim.lib.evalNixvim {
-              inherit system;
-              modules = [
-                self.nixvimModules.default
-              ];
-            };
+      perSystem = {system, ...}: {
+        # You can define actual Nixvim configurations here
+        nixvimConfigurations = {
+          default = inputs.nixvim.lib.evalNixvim {
+            inherit system;
+            modules = [
+              self.nixvimModules.default
+              {
+                nixosConfigPath = "/home/kx/.config/nixos";
+                nixvimConfigPath = "/home/kx/Code/nixvim";
+              }
+            ];
           };
+          # work = inputs.nixvim.lib.evalNixvim {
+          #   inherit system;
+          #   modules = [
+          #     self.nixvimModules.default
+          #     {
+          #       nixosConfigPath = "/path/to/work/nixos";
+          #       nixvimConfigPath = "/home/kx/Code/nixvim";
+          #     }
+          #   ];
+          # };
         };
+
+        # Helper function for both paths
+        nixvimConfigurations.withPaths = nixosPath: nixvimPath:
+          inputs.nixvim.lib.evalNixvim {
+            inherit system;
+            modules = [
+              self.nixvimModules.default
+              {
+                nixosConfigPath = nixosPath;
+                nixvimConfigPath = nixvimPath;
+              }
+            ];
+          };
+      };
     };
 }

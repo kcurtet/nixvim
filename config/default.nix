@@ -1,6 +1,7 @@
 {
   # Import all your configuration modules here
   imports = [
+    ./nixos-path.nix
     ./system.nix
     ./options.nix
     ./editor.nix

@@ -1,4 +1,9 @@
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   plugins.lsp = {
     enable = true;
     servers = {
@@ -12,7 +17,7 @@
         installRustc = true;
       };
       nixd = let
-        configPath = "(builtins.getFlake \"/home/kx/.config/nixos\")";
+        configPath = "(builtins.getFlake \"${config.nixosConfigPath}\")";
       in {
         enable = true;
         settings = {

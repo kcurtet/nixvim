@@ -1,4 +1,9 @@
 {
+  config,
+  pkgs,
+  lib,
+  ...
+}: {
   keymaps = [
     # Neo-tree
     {
@@ -71,9 +76,18 @@
       mode = "n";
       options = {
         silent = true;
-        desc = "Find files in config";
+        desc = "Find files in NixOS config";
       };
-      action = ":Telescope find_files cwd=~/.config/nixos<CR>";
+      action = ":Telescope find_files cwd=${config.nixosConfigPath}<CR>";
+    }
+    {
+      key = "<leader>fC";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Find files in NixVim config";
+      };
+      action = ":Telescope find_files cwd=${config.nixvimConfigPath}<CR>";
     }
     {
       key = "<leader>fw";
