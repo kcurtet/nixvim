@@ -81,7 +81,7 @@
       action = ":Telescope find_files cwd=${config.nixosConfigPath}<CR>";
     }
     {
-      key = "<leader>fC";
+      key = "<leader>fx";
       mode = "n";
       options = {
         silent = true;
