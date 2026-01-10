@@ -23,15 +23,13 @@
       {
         event = ["BufWritePost"];
         pattern = [
-          "/etc/nixos/*.nix"
-          "/etc/nixos/**/*.nix"
-          "${config.nixosConfigPath}/**/*.nix"
+          "${config.nixvimConfigPath}/*.nix"
           "${config.nixvimConfigPath}/**/*.nix"
         ];
         callback = {
           __raw = ''
             function()
-              vim.g.nix_files_modified = true
+              vim.g.nixvim_files_modified = true
             end
           '';
         };
@@ -43,7 +41,9 @@
             function()
               if vim.g.nix_files_modified then
                 print("Running nixos-rebuild switch...")
-                vim.fn.system("sudo nixos-rebuild switch")
+                vim.fn.system("pushd ${config.nixvimConfigPath}; git commit -am $(date +%s)-switch; git push; popd")
+                vim.fn.system("popd ${config.nixosConfigPath}; nix flake update nixvim; popd")
+                vim.fn.system("nswitch")
               end
             end
           '';
