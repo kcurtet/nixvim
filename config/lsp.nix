@@ -16,28 +16,27 @@
         installCargo = true;
         installRustc = true;
       };
-      nil.enable = true;
-      # nixd = let
-      #   configPath = "(builtins.getFlake \"${config.nixosConfigPath}\")";
-      # in {
-      #   enable = true;
-      #   settings = {
-      #     nixpkgs = {
-      #       expr = "import ${configPath}.inputs.nixpkgs { }";
-      #     };
-      #     formatting = {
-      #       command = ["alejandra"];
-      #     };
-      #     options = {
-      #       nixos = {
-      #         expr = "${configPath}.nixosConfigurations.panther.options";
-      #       };
-      #       home-manager = {
-      #         expr = "${configPath}.nixosConfigurations.panther.options.home-manager.users.type.getSubOptions []";
-      #       };
-      #     };
-      #   };
-      # };
+      nixd = let
+        configPath = "(builtins.getFlake \"${config.nixosConfigPath}\")";
+      in {
+        enable = true;
+        settings = {
+          nixpkgs = {
+            expr = "import ${configPath}.inputs.nixpkgs { }";
+          };
+          formatting = {
+            command = ["alejandra"];
+          };
+          options = {
+            nixos = {
+              expr = "${configPath}.nixosConfigurations.panther.options";
+            };
+            home-manager = {
+              expr = "${configPath}.nixosConfigurations.panther.options.home-manager.users.type.getSubOptions []";
+            };
+          };
+        };
+      };
     };
     keymaps = {
       silent = true;
