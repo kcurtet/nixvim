@@ -19,32 +19,36 @@
   };
 
   config = {
-    extraConfigLua = ''
-      local nix_files_modified = false
-
-        vim.api.nvim_create_autocmd("BufWritePost", {
-          pattern = {
-            "/etc/nixos/*.nix",
-            "/etc/nixos/**/*.nix",
-            "${config.nixvimConfigPath}/**/*.nix",
-            "${config.nixosConfigPath}/**/*.nix",
-          },
-          callback = function()
-            nix_files_modified = true
-          end,
-        })
-
-        vim.api.nvim_create_autocmd("VimLeavePre", {
-          callback = function()
-            if nix_files_modified then
-              print("Running nixos-rebuild switch...")
-              vim.fn.system("pushd ${config.nixvimConfigPath}; git commit -am $(date +%s)-switch; git push; popd")
-              vim.fn.system("pushd ${config.nixvimConfigPath}; git commit -am $(date +%s)-switch; git push; popd")
-              vim.fn.system("sudo nixos-rebuild switch")
+    autoCmd = [
+      {
+        event = ["BufWritePost"];
+        pattern = [
+          "/etc/nixos/*.nix"
+          "/etc/nixos/**/*.nix"
+          "${config.nixosConfigPath}/**/*.nix"
+          "${config.nixvimConfigPath}/**/*.nix"
+        ];
+        callback = {
+          __raw = ''
+            function()
+              vim.g.nix_files_modified = true
             end
-          end,
-        })
-    '';
+          '';
+        };
+      }
+      {
+        event = ["VimLeavePre"];
+        callback = {
+          __raw = ''
+            function()
+              if vim.g.nix_files_modified then
+                print("Running nixos-rebuild switch...")
+                vim.fn.system("sudo nixos-rebuild switch")
+              end
+            end
+          '';
+        };
+      }
+    ];
   };
 }
-
