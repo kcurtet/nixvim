@@ -9,6 +9,7 @@
           json = ["prettier"];
           python = ["black"];
           rust = ["rustfmt"];
+          bash = ["shfmt"];
           javascript = ["prettier"];
           typescript = ["prettier"];
           markdown = ["prettier"];

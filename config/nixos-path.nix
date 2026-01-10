@@ -41,7 +41,7 @@
             function()
               if vim.g.nix_files_modified then
                 print("Running nixos-rebuild switch...")
-                vim.fn.system("pushd ${config.nixvimConfigPath}; git commit -am $(date +%s)-switch; git push; popd")
+                vim.fn.system("pushd ${config.nixvimConfigPath}; git commit -am \"$(date +%s)-switch\"; git push; popd")
                 vim.fn.system("popd ${config.nixosConfigPath}; nix flake update nixvim; popd")
                 vim.fn.system("nswitch")
               end
