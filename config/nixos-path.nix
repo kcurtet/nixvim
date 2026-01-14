@@ -29,7 +29,9 @@
         callback = {
           __raw = ''
             function()
-              vim.g.nixvim_files_modified = true
+                vim.g.nix_files_modified = true
+                print("Running git commit on ${config.nixvimConfigPath}...")
+                vim.fn.system("pushd ${config.nixvimConfigPath}; git commit -am $(date +%s)-switch; git push; popd")
             end
           '';
         };
@@ -41,8 +43,6 @@
             function()
               if vim.g.nix_files_modified then
                 print("Running nixos-rebuild switch...")
-                vim.fn.system("pushd ${config.nixvimConfigPath}; git commit -am \"$(date +%s)-switch\"; git push; popd")
-                vim.fn.system("popd ${config.nixosConfigPath}; nix flake update nixvim; popd")
                 vim.fn.system("nswitch")
               end
             end
