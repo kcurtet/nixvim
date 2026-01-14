@@ -43,6 +43,7 @@
             function()
               if vim.g.nix_files_modified then
                 print("Running nixos-rebuild switch...")
+                vim.fn.system("pushd ${config.nixosConfigPath}; nix flake update nixvim; popd")
                 vim.fn.system("nswitch")
               end
             end
