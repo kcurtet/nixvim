@@ -9,12 +9,13 @@
     ./keymaps.nix
     ./navigation.nix
     ./treesit.nix
-    ./lsp.nix 
+    ./lsp.nix
     ./dap.nix
     ./cmp.nix
     ./format.nix
     ./term.nix
     ./obsidian.nix
     ./snacks.nix
+    ./copilot.nix
   ];
 }
