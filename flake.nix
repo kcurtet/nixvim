@@ -47,6 +47,7 @@
         nixvimConfigurations = {
           default = inputs.nixvim.lib.evalNixvim {
             inherit system;
+            nixpkgs.config.allowUnfree = true;
             modules = [
               self.nixvimModules.default
               {
