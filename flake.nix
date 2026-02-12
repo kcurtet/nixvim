@@ -33,6 +33,8 @@
         # Automatically install corresponding packages for each nixvimConfiguration
         # Lets you run `nix run .#<name>`, or simply `nix run` if you have a default
         packages.enable = true;
+
+        nixpkgs.config.allowUnfree = true;
         # Automatically install checks for each nixvimConfiguration
         # Run `nix flake check` to verify that your config is not broken
         checks.enable = true;
@@ -48,9 +50,6 @@
         nixvimConfigurations = {
           default = inputs.nixvim.lib.evalNixvim {
             inherit system;
-            pkgs = import nixpkgs {
-              config.allowUnfree = true;
-            };
             modules = [
               self.nixvimModules.default
               {
