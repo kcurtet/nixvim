@@ -49,7 +49,7 @@
           default = inputs.nixvim.lib.evalNixvim {
             inherit system;
             pkgs = import nixpkgs {
-              config.allowUnfree = true
+              config.allowUnfree = true;
             };
             modules = [
               self.nixvimModules.default
