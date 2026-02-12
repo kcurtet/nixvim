@@ -12,6 +12,7 @@
   outputs = {
     self,
     flake-parts,
+    nixpkgs,
     ...
   } @ inputs:
     flake-parts.lib.mkFlake {inherit inputs;} {
@@ -47,7 +48,9 @@
         nixvimConfigurations = {
           default = inputs.nixvim.lib.evalNixvim {
             inherit system;
-            nixpkgs.config.allowUnfree = true;
+            pkgs = import nixpkgs {
+              config.allowUnfree = true
+            };
             modules = [
               self.nixvimModules.default
               {
