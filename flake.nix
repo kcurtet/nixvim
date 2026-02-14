@@ -53,7 +53,7 @@
               self.nixvimModules.default
               {
                 nixosConfigPath = "/home/kx/.config/nixos";
-                nixvimConfigPath = "/home/kx/Code/nixvim";
+                nixvimConfigPath = "/home/kx/code/nixvim";
               }
             ];
           };

@@ -13,7 +13,7 @@
 
     nixvimConfigPath = lib.mkOption {
       type = lib.types.str;
-      default = "/home/kx/Code/nixvim";
+      default = "/home/kx/code/nixvim";
       description = "Path to NixVim configuration";
     };
   };
