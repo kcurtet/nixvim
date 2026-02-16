@@ -8,9 +8,9 @@
             enabled = true,
             auto_refresh = true,
             keymap = {
-              jump_prev = '[[',
-              jump_next = ']]',
-              accept = '<CR>',
+              jump_prev = 'k',
+              jump_next = 'j',
+              accept = 'l',
               refresh = 'gr',
               open = '<M-CR>'
             },
@@ -23,10 +23,9 @@
               accept = '<M-l>',
               accept_word = false,
               accept_line = false,
-              next = '<M-]>',
-
-              prev = '<M-[>',
-              dismiss = '<C-]>',
+              next = '<M-j>',
+              prev = '<M-k>',
+              dismiss = '<M-d>',
             },
           },
         })
