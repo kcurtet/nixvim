@@ -7,16 +7,15 @@
 
         workspaces = [
           {
-            name = "Personal";
-            path = "~/vault/personal";
+            name = "Vault";
+            path = "~/vault/";
           }
         ];
 
-        notes_subdir = "notes";
-        new_notes_location = "notes_subdir";
+        new_notes_location = "00-inbox";
 
         templates = {
-          folder = "templates";
+          folder = "40-resources/templates";
         };
       };
     };

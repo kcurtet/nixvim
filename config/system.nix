@@ -1,4 +1,8 @@
 {
+  config,
+  pkgs,
+  ...
+}: {
   viAlias = true;
   vimAlias = true;
   enableMan = false;
@@ -7,4 +11,8 @@
 
   clipboard.providers.wl-copy.enable = true;
   clipboard.providers.xclip.enable = false;
+
+  extraPlugins = with pkgs.vimPlugins; [
+    opencode-nvim
+  ];
 }
