@@ -3,8 +3,6 @@
     obsidian = {
       enable = true;
       settings = {
-        disable_frontmatter = false;
-
         workspaces = [
           {
             name = "Vault";
@@ -12,7 +10,17 @@
           }
         ];
 
-        new_notes_location = "00-inbox";
+        notes_subdir = "00-inbox";
+
+        daily_notes = {
+          folder = "50-journal/daily";
+          date_format = "%Y-%m-%d";
+          alias_format = "%B %-d, %Y";
+          default_tags = ["daily-notes"];
+          template = "40-resources/templates/daily-note.md";
+        };
+
+        new_notes_location = "notes_subdir";
 
         templates = {
           folder = "40-resources/templates";
