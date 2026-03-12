@@ -15,6 +15,8 @@
       };
     };
 
+    neogit.enable = true;
+
     gitsigns = {
       enable = true;
       settings.diff_opts = {
