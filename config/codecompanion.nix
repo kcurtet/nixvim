@@ -1,15 +1,16 @@
 {
   plugins = {
+    render-markdown.enable = true; # Enable markdown rendering for better AI responses
     codecompanion = {
       enable = true;
 
       # Settings for the main plugin
       settings = {
         keymaps = {
-          send = "<leader>ca";  # Send code to AI
-          send_file = "<leader>cf";  # Send current file to AI
-          send_selection = "<leader>cs";  # Send selection to AI
-          close = "<leader>cc";  # Close chat
+          send = "<leader>ca"; # Send code to AI
+          send_file = "<leader>cf"; # Send current file to AI
+          send_selection = "<leader>cs"; # Send selection to AI
+          close = "<leader>cc"; # Close chat
         };
 
         # Suggestion settings
@@ -28,11 +29,14 @@
           },
           strategies = {
             chat = {
-              adapter = "openai",
+              adapter = "copilot",
             },
             inline = {
-              adapter = "openai",
+              adapter = "copilot",
             },
+            cmd = {
+              adapter = "copilot",
+            }
           },
           tools = {
             diff = {
