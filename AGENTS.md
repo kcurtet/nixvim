@@ -26,28 +26,30 @@ nix build
 
 ```
 .
-├── flake.nix           # Flake entry point, defines configurations
-├── flake.lock          # Pinned input versions
-├── README.md           # Project documentation
-└── config/             # NixVim module configuration files
-    ├── default.nix     # Imports all other config modules
-    ├── nixos-path.nix  # Custom options for paths
-    ├── options.nix     # Vim options (globals, opts)
-    ├── editor.nix      # Editor plugins (comment, pairs, git)
-    ├── ui.nix          # UI plugins (colorscheme, statusline)
-    ├── keymaps.nix     # All keybindings
-    ├── navigation.nix  # File navigation (neo-tree, telescope)
-    ├── treesit.nix     # Treesitter configuration
-    ├── lsp.nix         # LSP servers and keymaps
-    ├── dap.nix         # Debug adapter protocol
-    ├── cmp.nix         # Autocompletion
-    ├── format.nix      # Formatting (conform-nvim)
-    ├── term.nix        # Terminal (toggleterm)
-    ├── obsidian.nix    # Obsidian note-taking
-    ├── snacks.nix      # Snacks.nvim utilities
-    ├── copilot.nix     # GitHub Copilot
-    ├── system.nix      # System-specific settings
-    └── bufferline.nix  # Buffer line
+├── flake.nix # Flake entry point, defines configurations
+├── flake.lock # Pinned input versions
+├── README.md # Project documentation
+└── config/ # NixVim module configuration files
+├── default.nix # Imports all other config modules
+├── nixos-path.nix # Custom options for paths
+├── options.nix # Vim options (globals, opts)
+├── editor.nix # Editor plugins (comment, pairs, git)
+├── ui.nix # UI plugins (colorscheme, statusline)
+├── keymaps.nix # All keybindings
+├── navigation.nix # File navigation (neo-tree, telescope)
+├── treesit.nix # Treesitter configuration
+├── lsp.nix # LSP servers and keymaps
+├── dap.nix # Debug adapter protocol
+├── cmp.nix # Autocompletion
+├── format.nix # Formatting (conform-nvim)
+├── term.nix # Terminal (toggleterm)
+├── obsidian.nix # Obsidian note-taking
+├── snacks.nix # Snacks.nvim utilities
+├── copilot.nix # GitHub Copilot
+├── codecompanion.nix # CodeCompanion for AI Chat like Cursor
+├── system.nix # System-specific settings
+├── bufferline.nix # Buffer line
+└── extras.nix # Extra custom modules
 ```
 
 ## Configuration Patterns
@@ -243,6 +245,7 @@ Define custom commands:
 ## Plugin Documentation
 
 Look up plugin options and settings at:
+
 ```
 https://nix-community.github.io/nixvim/plugins/{name}/index.html
 ```
@@ -252,6 +255,7 @@ For example, `plugins.telescope` → https://nix-community.github.io/nixvim/plug
 ## Neovim Options Documentation
 
 Core Neovim options (globals, opts, keymaps, etc.) are documented at:
+
 ```
 https://nix-community.github.io/nixvim/NeovimOptions/index.html
 ```
@@ -266,17 +270,17 @@ https://nix-community.github.io/nixvim/NeovimOptions/index.html
 
 ## Key Bindings Reference
 
-| Prefix | Purpose |
-|--------|---------|
-| `<leader>f` | Find (Telescope) |
-| `<leader>g` | Git |
-| `<leader>l` | LSP |
-| `<leader>b` | Buffer |
-| `<leader>w` | Window |
-| `<leader>q` | Quit |
+| Prefix      | Purpose               |
+| ----------- | --------------------- |
+| `<leader>f` | Find (Telescope)      |
+| `<leader>g` | Git                   |
+| `<leader>l` | LSP                   |
+| `<leader>b` | Buffer                |
+| `<leader>w` | Window                |
+| `<leader>q` | Quit                  |
 | `<leader>x` | Trouble (diagnostics) |
-| `<leader>u` | UI toggles |
-| `<leader>e` | Neo-tree |
+| `<leader>u` | UI toggles            |
+| `<leader>e` | Neo-tree              |
 
 Leader key is `Space`. Local leader is `,`.
 
