@@ -16,6 +16,7 @@
     ./term.nix
     ./obsidian.nix
     ./snacks.nix
+    ./codecompanion.nix
     ./copilot.nix
   ];
 }
