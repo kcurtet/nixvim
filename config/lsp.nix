@@ -25,7 +25,7 @@
             expr = "import ${configPath}.inputs.nixpkgs { }";
           };
           formatting = {
-            command = ["alejandra"];
+            command = ["nixfmt-rfc-style"];
           };
           options = {
             nixos = {
@@ -37,6 +37,7 @@
           };
         };
       };
+      deadnix.enable = true;
     };
     keymaps = {
       silent = true;
