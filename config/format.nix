@@ -4,7 +4,7 @@
       enable = true;
       settings = {
         formatters_by_ft = {
-          nix = ["nixfmt-rfc-style"];
+          nix = ["nixfmt"];
           lua = ["stylua"];
           json = ["prettier"];
           python = ["ruff"];

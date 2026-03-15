@@ -40,7 +40,7 @@
             expr = "import ${configPath}.inputs.nixpkgs { }";
           };
           formatting = {
-            command = ["nixfmt-rfc-style"];
+            command = ["nixfmt"];
           };
           options = {
             nixos = {

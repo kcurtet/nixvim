@@ -1500,7 +1500,7 @@
         silent = true;
         desc = "Fix file (lint fix)";
       };
-      action.__raw = "function() local ft = vim.bo.filetype if ft == 'python' then vim.cmd('!ruff check --fix %') elseif ft == 'lua' then vim.cmd('!stylua %') elseif ft == 'nix' then vim.cmd('!nixfmt-rfc-style %') elseif ft:match('javascript') or ft:match('typescript') or ft == 'json' or ft == 'markdown' then vim.cmd('!prettier --write %') else print('No fix for ' .. ft) end end";
+      action.__raw = "function() local ft = vim.bo.filetype if ft == 'python' then vim.cmd('!ruff check --fix %') elseif ft == 'lua' then vim.cmd('!stylua %') elseif ft == 'nix' then vim.cmd('!nixfmt %') elseif ft:match('javascript') or ft:match('typescript') or ft == 'json' or ft == 'markdown' then vim.cmd('!prettier --write %') else print('No fix for ' .. ft) end end";
     }
     # Check file (lint)
     {
