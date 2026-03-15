@@ -10,6 +10,7 @@
     ./navigation.nix
     ./treesit.nix
     ./lsp.nix
+    ./lint.nix
     ./dap.nix
     ./cmp.nix
     ./format.nix
