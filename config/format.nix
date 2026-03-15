@@ -7,7 +7,7 @@
           nix = ["nixfmt-rfc-style"];
           lua = ["stylua"];
           json = ["prettier"];
-          python = ["black"];
+          python = ["ruff"];
           rust = ["rustfmt"];
           bash = ["shfmt"];
           javascript = ["prettier"];

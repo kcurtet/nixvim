@@ -4,5 +4,15 @@
     telescope.enable = true;
     flash.enable = true;
     project-nvim.enable = true;
+
+    # Harpoon2 - Quick file navigation
+    harpoon = {
+      enable = true;
+      enableTelescope = true;
+      settings = {
+        save_on_toggle = true;
+        sync_on_ui_close = false;
+      };
+    };
   };
 }

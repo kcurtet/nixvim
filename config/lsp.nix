@@ -10,7 +10,22 @@
       ts_ls.enable = true;
       lua_ls.enable = true;
       jsonls.enable = true;
-      pyright.enable = true;
+      pyright = {
+        enable = true;
+        settings = {
+          python.analysis = {
+            autoSearchPaths = true;
+            diagnosticMode = "openFilesOnly";
+            useLibraryCodeForTypes = true;
+            typeCheckingMode = "standard";
+            inlayHints = {
+              variableTypes = true;
+              functionReturnTypes = true;
+              callArgumentNames = true;
+            };
+          };
+        };
+      };
       rust_analyzer = {
         enable = true;
         installCargo = true;
@@ -81,13 +96,30 @@
           action = "format";
           desc = "Format buffer";
         };
+        # Enhanced LSP keymaps
+        "<leader>lh" = {
+          action = "hover";
+          desc = "Hover documentation";
+        };
+        "<leader>lD" = {
+          action = "declaration";
+          desc = "Go to declaration";
+        };
+        "<leader>lt" = {
+          action = "type_definition";
+          desc = "Go to type definition";
+        };
+        "<leader>li" = {
+          action = "implementation";
+          desc = "Go to implementation";
+        };
       };
       diagnostic = {
-        "[d" = {
+        ",d" = {
           action = "goto_prev";
           desc = "Previous diagnostic";
         };
-        "]d" = {
+        ";d" = {
           action = "goto_next";
           desc = "Next diagnostic";
         };

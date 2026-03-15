@@ -529,7 +529,7 @@
       action = ":Trouble todo toggle<CR>";
     }
     {
-      key = "]t";
+      key = ";t";
       mode = "n";
       options = {
         silent = true;
@@ -538,7 +538,7 @@
       action.__raw = "function() require('todo-comments').jump_next() end";
     }
     {
-      key = "[t";
+      key = ",t";
       mode = "n";
       options = {
         silent = true;
@@ -578,7 +578,7 @@
       action.__raw = "function() Snacks.lazygit() end";
     }
     {
-      key = "]h";
+      key = ";h";
       mode = "n";
       options = {
         silent = true;
@@ -587,7 +587,7 @@
       action.__raw = "function() require('gitsigns').next_hunk() end";
     }
     {
-      key = "[h";
+      key = ",h";
       mode = "n";
       options = {
         silent = true;
@@ -699,6 +699,860 @@
         desc = "Toggle global autoformat";
       };
       action = ":FormatToggle<CR>";
+    }
+
+    # ==================== NEW KEYBINDINGS ====================
+
+    # Harpoon - Quick file navigation
+    {
+      key = "<leader>a";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Add file to Harpoon";
+      };
+      action.__raw = "function() require('harpoon'):list():add() end";
+    }
+    {
+      key = "<leader>hh";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon quick menu";
+      };
+      action.__raw = "function() require('harpoon').ui:toggle_quick_menu(require('harpoon'):list()) end";
+    }
+    # Harpoon file slots 1-9
+    {
+      key = "<leader>h1";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 1";
+      };
+      action.__raw = "function() require('harpoon'):list():select(1) end";
+    }
+    {
+      key = "<leader>h2";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 2";
+      };
+      action.__raw = "function() require('harpoon'):list():select(2) end";
+    }
+    {
+      key = "<leader>h3";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 3";
+      };
+      action.__raw = "function() require('harpoon'):list():select(3) end";
+    }
+    {
+      key = "<leader>h4";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 4";
+      };
+      action.__raw = "function() require('harpoon'):list():select(4) end";
+    }
+    {
+      key = "<leader>h5";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 5";
+      };
+      action.__raw = "function() require('harpoon'):list():select(5) end";
+    }
+    {
+      key = "<leader>h6";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 6";
+      };
+      action.__raw = "function() require('harpoon'):list():select(6) end";
+    }
+    {
+      key = "<leader>h7";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 7";
+      };
+      action.__raw = "function() require('harpoon'):list():select(7) end";
+    }
+    {
+      key = "<leader>h8";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 8";
+      };
+      action.__raw = "function() require('harpoon'):list():select(8) end";
+    }
+    {
+      key = "<leader>h9";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Harpoon file 9";
+      };
+      action.__raw = "function() require('harpoon'):list():select(9) end";
+    }
+    # Harpoon navigation
+    {
+      key = "<leader>hn";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next Harpoon file";
+      };
+      action.__raw = "function() local list = require('harpoon'):list() list:next() end";
+    }
+    {
+      key = "<leader>hp";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous Harpoon file";
+      };
+      action.__raw = "function() local list = require('harpoon'):list() list:prev() end";
+    }
+    # Harpoon with Telescope
+    {
+      key = "<leader>hs";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Search Harpoon files";
+      };
+      action.__raw = "function() require('telescope').extensions.harpoon.marks() end";
+    }
+    # Harpoon remove current file
+    {
+      key = "<leader>hr";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Remove from Harpoon";
+      };
+      action.__raw = "function() local list = require('harpoon'):list() list:remove() end";
+    }
+    # Harpoon clear all
+    {
+      key = "<leader>hx";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Clear Harpoon list";
+      };
+      action.__raw = "function() require('harpoon'):list():clear() end";
+    }
+
+    # Code actions (prefix <leader>c)
+    {
+      key = "<leader>c";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "code";
+      };
+      action = "<nop>";
+    }
+    {
+      key = "<leader>ca";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Code actions";
+      };
+      action.__raw = "function() vim.lsp.buf.code_action() end";
+    }
+    {
+      key = "<leader>cr";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Rename symbol";
+      };
+      action.__raw = "function() vim.lsp.buf.rename() end";
+    }
+    {
+      key = "<leader>cf";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Format buffer";
+      };
+      action.__raw = "function() vim.lsp.buf.format() end";
+    }
+
+    # Project operations (prefix <leader>p)
+    {
+      key = "<leader>p";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "project";
+      };
+      action = "<nop>";
+    }
+    {
+      key = "<leader>pr";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Recent files (project)";
+      };
+      action = ":Telescope oldfiles cwd=${config.nixvimConfigPath}<CR>";
+    }
+    {
+      key = "<leader>pg";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Grep in project";
+      };
+      action = ":Telescope live_grep cwd=${config.nixvimConfigPath}<CR>";
+    }
+    {
+      key = "<leader>pf";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Find files in project";
+      };
+      action = ":Telescope find_files cwd=${config.nixvimConfigPath}<CR>";
+    }
+
+    # Quickfix navigation (using ; for next, , for previous - ergonomic on Spanish keyboard)
+    {
+      key = ";q";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next quickfix";
+      };
+      action = ":cnext<CR>";
+    }
+    {
+      key = ",q";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous quickfix";
+      };
+      action = ":cprev<CR>";
+    }
+    {
+      key = ";Q";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "First quickfix";
+      };
+      action = ":cfirst<CR>";
+    }
+    {
+      key = ",Q";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Last quickfix";
+      };
+      action = ":clast<CR>";
+    }
+    {
+      key = "<leader>qo";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Open quickfix";
+      };
+      action = ":copen<CR>";
+    }
+    {
+      key = "<leader>qc";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Close quickfix";
+      };
+      action = ":cclose<CR>";
+    }
+
+    # Buffer operations (enhanced)
+    {
+      key = "<leader>bse";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Save modified buffers";
+      };
+      action = ":wall<CR>";
+    }
+    {
+      key = "<leader>bcl";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Close all other buffers";
+      };
+      action.__raw = "function() local current = vim.api.nvim_get_current_buf(); vim.cmd('bufdo bd'); vim.api.nvim_set_current_buf(current); end";
+    }
+    {
+      key = ";b";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next buffer";
+      };
+      action = ":bnext<CR>";
+    }
+    {
+      key = ",b";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous buffer";
+      };
+      action = ":bprevious<CR>";
+    }
+
+    # Window management (enhanced)
+    {
+      key = "<leader>we";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Equalize windows";
+      };
+      action = ":wincmd =<CR>";
+    }
+    {
+      key = "<leader>wm";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Maximize window";
+      };
+      action = ":wincmd _ | wincmd |<CR>";
+    }
+    {
+      key = "<leader>wo";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Close other windows";
+      };
+      action = ":only<CR>";
+    }
+    {
+      key = "<leader>wr";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Rotate windows";
+      };
+      action = ":wincmd r<CR>";
+    }
+
+    # Tab navigation (prefix <leader>T)
+    {
+      key = "<leader>T";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "tab";
+      };
+      action = "<nop>";
+    }
+    {
+      key = "<leader>Tn";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "New tab";
+      };
+      action = ":tabnew<CR>";
+    }
+    {
+      key = "<leader>Tc";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Close tab";
+      };
+      action = ":tabclose<CR>";
+    }
+    {
+      key = ";T";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next tab";
+      };
+      action = ":tabnext<CR>";
+    }
+    {
+      key = ",T";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous tab";
+      };
+      action = ":tabprev<CR>";
+    }
+    {
+      key = "<leader>Tt";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 1-9";
+      };
+      action = ":tabfirst<CR>";
+    }
+    {
+      key = "<leader>T1";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 1";
+      };
+      action = "1gt";
+    }
+    {
+      key = "<leader>T2";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 2";
+      };
+      action = "2gt";
+    }
+    {
+      key = "<leader>T3";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 3";
+      };
+      action = "3gt";
+    }
+    {
+      key = "<leader>T4";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 4";
+      };
+      action = "4gt";
+    }
+    {
+      key = "<leader>T5";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 5";
+      };
+      action = "5gt";
+    }
+    {
+      key = "<leader>T6";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 6";
+      };
+      action = "6gt";
+    }
+    {
+      key = "<leader>T7";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 7";
+      };
+      action = "7gt";
+    }
+    {
+      key = "<leader>T8";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 8";
+      };
+      action = "8gt";
+    }
+    {
+      key = "<leader>T9";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Go to tab 9";
+      };
+      action = "9gt";
+    }
+
+    # Enhanced diagnostics
+    {
+      key = "<leader>le";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Show line diagnostics";
+      };
+      action.__raw = "function() vim.diagnostic.open_float() end";
+    }
+    {
+      key = ";e";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next error diagnostic";
+      };
+      action.__raw = "function() vim.diagnostic.goto_next({severity = vim.diagnostic.severity.ERROR}) end";
+    }
+    {
+      key = ",e";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous error diagnostic";
+      };
+      action.__raw = "function() vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.ERROR}) end";
+    }
+    {
+      key = ";w";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next warning diagnostic";
+      };
+      action.__raw = "function() vim.diagnostic.goto_next({severity = vim.diagnostic.severity.WARN}) end";
+    }
+    {
+      key = ",w";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous warning diagnostic";
+      };
+      action.__raw = "function() vim.diagnostic.goto_prev({severity = vim.diagnostic.severity.WARN}) end";
+    }
+
+    # File operations
+    {
+      key = "<leader>fn";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "New file";
+      };
+      action = ":enew<CR>";
+    }
+    {
+      key = "<leader>fR";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Rename current file";
+      };
+      action.__raw = "function() local old_name = vim.api.nvim_buf_get_name(0); local new_name = vim.fn.input('New name: ', old_name, 'file'); if new_name ~= '' and new_name ~= old_name then vim.cmd('saveas ' .. new_name); vim.cmd('silent! !rm ' .. old_name); print('Renamed to ' .. new_name); end end";
+    }
+
+    # Text operations
+    {
+      key = "<leader>sy";
+      mode = "v";
+      options = {
+        silent = true;
+        desc = "Copy to system clipboard";
+      };
+      action = "\"+y";
+    }
+    {
+      key = "<leader>sY";
+      mode = "v";
+      options = {
+        silent = true;
+        desc = "Copy line to system clipboard";
+      };
+      action = "\"+yy";
+    }
+    {
+      key = "<leader>sp";
+      mode = "v";
+      options = {
+        silent = true;
+        desc = "Paste from system clipboard";
+      };
+      action = "\"+p";
+    }
+    {
+      key = "<leader>sP";
+      mode = "v";
+      options = {
+        silent = true;
+        desc = "Paste from system clipboard (before)";
+      };
+      action = "\"+P";
+    }
+
+    # Location list navigation
+    {
+      key = ";l";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next location";
+      };
+      action = ":lnext<CR>";
+    }
+    {
+      key = ",l";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous location";
+      };
+      action = ":lprev<CR>";
+    }
+    {
+      key = "<leader>lo";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Open location list";
+      };
+      action = ":lopen<CR>";
+    }
+    {
+      key = "<leader>lc";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Close location list";
+      };
+      action = ":lclose<CR>";
+    }
+
+    # Git blame (additional)
+    {
+      key = "<leader>gb";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Toggle blame";
+      };
+      action.__raw = "function() vim.cmd('Gitsigns toggle_current_line_blame') end";
+    }
+
+    # Quick command
+    {
+      key = "<leader>;";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Command palette";
+      };
+      action = ":Telescope commands<CR>";
+    }
+
+    # Search history
+    {
+      key = "<leader>fh";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Search history";
+      };
+      action = ":Telescope search_history<CR>";
+    }
+    {
+      key = "<leader>f:";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Command history";
+      };
+      action = ":Telescope command_history<CR>";
+    }
+
+    # Jumps navigation
+    {
+      key = "<leader>j";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "jumplist";
+      };
+      action = "<nop>";
+    }
+    {
+      key = ";j";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next jump";
+      };
+      action = "<C-i>";
+    }
+    {
+      key = ",j";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous jump";
+      };
+      action = "<C-o>";
+    }
+
+    # Marks navigation
+    {
+      key = "<leader>m";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "marks";
+      };
+      action = "<nop>";
+    }
+    {
+      key = "<leader>ms";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Set mark";
+      };
+      action = "m";
+    }
+    {
+      key = "<leader>mm";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Show marks";
+      };
+      action = ":Telescope marks<CR>";
+    }
+    {
+      key = ";m";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Next mark";
+      };
+      action = "']";
+    }
+    {
+      key = ",m";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Previous mark";
+      };
+      action = "'[";
+    }
+
+    # File type specific (for Nix files)
+    {
+      key = "<leader>ffn";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Find files in NixOS config";
+      };
+      action = ":Telescope find_files cwd=${config.nixosConfigPath}<CR>";
+    }
+
+    # ==================== ORGANIZE/REFACTOR KEYMAPS ====================
+    # Global code organization (works for all languages)
+    {
+      key = "<leader>o";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "organize";
+      };
+      action = "<nop>";
+    }
+    # Organize imports (language-aware)
+    {
+      key = "<leader>oi";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Organize imports";
+      };
+      action.__raw = "function() local ft = vim.bo.filetype if ft == 'python' then vim.cmd('!ruff check --select I --fix %') elseif ft == 'lua' then vim.cmd('!stylua %') elseif ft:match('javascript') or ft:match('typescript') then vim.cmd('!eslint --fix %') else print('No organize imports for ' .. ft) end end";
+    }
+    # Fix/Check current file
+    {
+      key = "<leader>of";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Fix file (lint fix)";
+      };
+      action.__raw = "function() local ft = vim.bo.filetype if ft == 'python' then vim.cmd('!ruff check --fix %') elseif ft == 'lua' then vim.cmd('!stylua %') elseif ft == 'nix' then vim.cmd('!nixfmt-rfc-style %') elseif ft:match('javascript') or ft:match('typescript') or ft == 'json' or ft == 'markdown' then vim.cmd('!prettier --write %') else print('No fix for ' .. ft) end end";
+    }
+    # Check file (lint)
+    {
+      key = "<leader>oc";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Check file (lint)";
+      };
+      action.__raw = "function() local ft = vim.bo.filetype if ft == 'python' then vim.cmd('!ruff check %') elseif ft == 'lua' then vim.cmd('!selene %') elseif ft == 'nix' then vim.cmd('!deadnix %') else print('No check for ' .. ft) end end";
+    }
+    # Run file (language-aware)
+    {
+      key = "<leader>or";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Run file";
+      };
+      action.__raw = "function() local ft = vim.bo.filetype local cmd if ft == 'python' then cmd = 'python' elseif ft == 'lua' then cmd = 'lua' elseif ft == 'sh' or ft == 'bash' then cmd = 'bash' elseif ft == 'javascript' then cmd = 'node' elseif ft:match('typescript') then cmd = 'tsx' else cmd = nil end if cmd then vim.cmd('term ' .. cmd .. ' %') else print('Cannot run ' .. ft .. ' files') end end";
+    }
+    # Toggle inlay hints (global)
+    {
+      key = "<leader>oh";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Toggle inlay hints";
+      };
+      action.__raw = "function() vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0)) end";
+    }
+
+    # ==================== QUICK ACTIONS ====================
+    # Quick format (uses conform-nvim)
+    {
+      key = "<leader>qf";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Quick format buffer";
+      };
+      action.__raw = "function() require('conform').format({ async = true, lsp_fallback = true }) end";
+    }
+    # Quick format visual selection
+    {
+      key = "<leader>qf";
+      mode = "v";
+      options = {
+        silent = true;
+        desc = "Quick format selection";
+      };
+      action.__raw = "function() require('conform').format({ async = true, lsp_fallback = true }) end";
     }
   ];
 }
