@@ -1,4 +1,10 @@
-{ config, pkgs, lib, ... }: {
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
+{
   plugins.lint = {
     enable = true;
 
@@ -16,7 +22,10 @@
       lua = [ "selene" ];
 
       # Nix linter
-      nix = [ "deadnix" ];
+      nix = [
+        "deadnix"
+        "statix"
+      ];
     };
   };
 }
