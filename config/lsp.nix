@@ -52,6 +52,16 @@
           };
         };
       };
+
+      # Additional LSP servers
+      gopls.enable = true;
+      yamlls.enable = true;
+      bashls.enable = true;
+      dockerls.enable = true;
+      cssls.enable = true;
+      html.enable = true;
+      emmet_ls.enable = true;
+      marksman.enable = true;
     };
     keymaps = {
       silent = true;

@@ -11,6 +11,8 @@
     ./snippets.nix
     ./substitute.nix
     ./treesj.nix
+    ./lspsaga.nix
+    ./lsp-enhancements.nix
     ./keymaps.nix
     ./navigation.nix
     ./treesit.nix
