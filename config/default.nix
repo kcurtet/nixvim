@@ -7,6 +7,10 @@
     ./editor.nix
     ./ui.nix
     ./bufferline.nix
+    ./mini.nix
+    ./snippets.nix
+    ./substitute.nix
+    ./treesj.nix
     ./keymaps.nix
     ./navigation.nix
     ./treesit.nix

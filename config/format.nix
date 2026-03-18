@@ -6,13 +6,21 @@
         formatters_by_ft = {
           nix = ["nixfmt"];
           lua = ["stylua"];
-          json = ["prettier"];
           python = ["ruff"];
           rust = ["rustfmt"];
           bash = ["shfmt"];
-          javascript = ["prettier"];
-          typescript = ["prettier"];
-          markdown = ["prettier"];
+          javascript = ["biome"];
+          typescript = ["biome"];
+          javascriptreact = ["biome"];
+          typescriptreact = ["biome"];
+          json = ["biome"];
+          jsonc = ["biome"];
+          css = ["biome"];
+          html = ["biome"];
+          vue = ["biome"];
+          svelte = ["biome"];
+          astro = ["biome"];
+          markdown = ["biome"];
         };
         format_on_save = ''
           function(bufnr)

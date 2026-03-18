@@ -12,6 +12,35 @@
   clipboard.providers.wl-copy.enable = true;
   clipboard.providers.xclip.enable = false;
 
+  # All external packages for LSPs, formatters, and linters
+  extraPackages = with pkgs; [
+    # Formatters
+    nixfmt
+    stylua
+    biome
+    shfmt
+
+    # LSPs (built-in: ts_ls, lua_ls, jsonls, pyright, rust_analyzer, nixd)
+    # These are included by nixvim, but some need external tools
+    nodePackages_latest.typescript-language-server
+    lua-language-server
+    nodePackages_latest.vscode-langservers-extracted # jsonls
+    python312Packages.python-lsp-server
+    rust-analyzer
+    cargo
+    rustc
+    nixd
+
+    # Linters
+    selene
+    deadnix
+    statix
+    nodePackages_latest.eslint
+
+    # Python
+    ruff
+  ];
+
   extraPlugins = with pkgs.vimPlugins; [
     opencode-nvim
   ];
