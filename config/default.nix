@@ -14,6 +14,8 @@
     ./lspsaga.nix
     ./lsp-enhancements.nix
     ./session.nix
+    ./git-enhancements.nix
+    ./qol.nix
     ./keymaps.nix
     ./navigation.nix
     ./treesit.nix
