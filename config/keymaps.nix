@@ -1575,5 +1575,46 @@
       };
       action.__raw = "function() require('conform').format({ async = true, lsp_fallback = true }) end";
     }
+
+    # ==================== SESSION MANAGEMENT ====================
+    # Save session
+    {
+      key = "<leader>ss";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Save session";
+      };
+      action.__raw = "function() require('auto-session.lib').current_session_name() end";
+    }
+    # Load session
+    {
+      key = "<leader>sl";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Load session";
+      };
+      action = ":Telescope sessions<CR>";
+    }
+    # Delete session
+    {
+      key = "<leader>sd";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Delete session";
+      };
+      action = ":SessionDelete<CR>";
+    }
+    # List sessions
+    {
+      key = "<leader>si";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "List sessions";
+      };
+      action = ":SessionSearch<CR>";
+    }
   ];
-}

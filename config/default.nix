@@ -13,6 +13,7 @@
     ./treesj.nix
     ./lspsaga.nix
     ./lsp-enhancements.nix
+    ./session.nix
     ./keymaps.nix
     ./navigation.nix
     ./treesit.nix
