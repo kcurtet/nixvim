@@ -7,10 +7,8 @@
     fidget.enable = true;
     noice.enable = true;
 
-    #bufferline.enable = true;
-    #lualine.enable = true;
-
     which-key.enable = true;
+    lualine.enable = true;
     web-devicons.enable = true;
   };
 }

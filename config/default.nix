@@ -6,6 +6,7 @@
     ./options.nix
     ./editor.nix
     ./ui.nix
+    ./bufferline.nix
     ./keymaps.nix
     ./navigation.nix
     ./treesit.nix

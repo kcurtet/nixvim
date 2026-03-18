@@ -13,8 +13,52 @@
     self,
     flake-parts,
     nixpkgs,
-    ...
-  } @ inputs:
+    ... @ inputs:
+    # Expose nixvim as a package for `nix run`
+    packages = flake-parts.lib.mkFlake {inherit inputs;} {
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+        "x86_64-darwin"
+        "aarch64-darwin"
+      ];
+
+      imports = [
+        inputs.nixvim.flakeModules.default
+        {
+          nixosConfigPath = "/home/kx/system/nixos-config";
+          nixvimConfigPath = "/home/kx/code/projects/personal/nixvim";
+        }
+      ];
+    };
+
+    perSystem = {system, ...}: {
+      # You can define actual Nixvim configurations here
+      nixvimConfigurations = {
+        default = inputs.nixvim.lib.evalNixvim {
+          inherit system;
+          modules = [
+            self.nixvimModules.default
+              {
+                nixosConfigPath = "/home/kx/system/nixos-config";
+                nixvimConfigPath = "/home/kx/code/projects/personal/nixvim";
+              }
+            ];
+          };
+        };
+        nixvim-full = inputs.nixvim.lib.evalNixvim {
+          inherit system;
+          modules = [
+            self.nixvimModules.default
+              {
+                nixosConfigPath = "/home/kx/system/nixos-config";
+                nixvimConfigPath = "/home/kx/code/projects/personal/nixvim";
+              }
+            ];
+          };
+      };
+    };
+  };
     flake-parts.lib.mkFlake {inherit inputs;} {
       systems = [
         "x86_64-linux"
@@ -57,6 +101,16 @@
               }
             ];
           };
+          nixvim-full = inputs.nixvim.lib.evalNixvim {
+            inherit system;
+            modules = [
+              self.nixvimModules.default
+              {
+                nixosConfigPath = "/home/kx/system/nixos-config";
+                nixvimConfigPath = "/home/kx/code/nixvim";
+              }
+            ];
+          };
           # work = inputs.nixvim.lib.evalNixvim {
           #   inherit system;
           #   modules = [
@@ -68,19 +122,6 @@
           #   ];
           # };
         };
-
-        # Helper function for both paths
-        nixvimConfigurations.withPaths = nixosPath: nixvimPath:
-          inputs.nixvim.lib.evalNixvim {
-            inherit system;
-            modules = [
-              self.nixvimModules.default
-              {
-                nixosConfigPath = nixosPath;
-                nixvimConfigPath = nixvimPath;
-              }
-            ];
-          };
       };
     };
 }
