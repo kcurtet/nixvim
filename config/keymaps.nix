@@ -98,6 +98,27 @@
       };
       action = ":Telescope grep_string<CR>";
     }
+    # Telescope - Undo history
+    {
+      key = "<leader>fu";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "Undo history";
+      };
+      action = ":Telescope undo<CR>";
+    }
+
+    # Telescope - File browser
+    {
+      key = "<leader>fb";
+      mode = "n";
+      options = {
+        silent = true;
+        desc = "File browser";
+      };
+      action = ":Telescope file_browser<CR>";
+    }
 
     # Telescope - Git
     {

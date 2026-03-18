@@ -3,7 +3,11 @@
     neo-tree.enable = true;
     telescope = {
       enable = true;
-      enabledExtensions = [ "harpoon" ];
+      enabledExtensions = [
+        "fzf"
+        "harpoon"
+        "undo"
+      ];
     };
     flash.enable = true;
     project-nvim.enable = true;
