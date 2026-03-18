@@ -16,6 +16,7 @@
     ./session.nix
     ./git-enhancements.nix
     ./qol.nix
+    ./indent.nix
     ./keymaps.nix
     ./navigation.nix
     ./treesit.nix
