@@ -25,10 +25,10 @@
           close = "<Esc>";
         };
         # Ignore file types for preview
-        ignore_files = {
-          "node_modules/*";
-          "target/*";
-        };
+        ignore_files = [
+          "node_modules/*"
+          "target/*"
+        ];
       };
     };
   };

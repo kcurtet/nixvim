@@ -3,11 +3,6 @@
     neo-tree.enable = true;
     telescope = {
       enable = true;
-      enabledExtensions = [
-        "fzf"
-        "harpoon"
-        "undo"
-      ];
     };
     flash.enable = true;
     project-nvim.enable = true;
@@ -15,6 +10,7 @@
     # Harpoon2 - Quick file navigation
     harpoon = {
       enable = true;
+      enableTelescope = true;
       luaConfig.content = ''
         require("harpoon"):setup({
           settings = {

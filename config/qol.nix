@@ -19,15 +19,16 @@
     };
 
     # Better register management and visualization
-    registers = {
-      enable = true;
-      settings = {
-        window = {
-          border = "rounded";
-          max_width = 80;
-          max_height = 20;
-        };
-      };
-    };
+    # Note: registers-nvim has no dedicated Nixvim module; use extraPlugins
+    # registers = {
+    #   enable = true;
+    #   settings = {
+    #     window = {
+    #       border = "rounded";
+    #       max_width = 80;
+    #       max_height = 20;
+    #     };
+    #   };
+    # };
   };
 }

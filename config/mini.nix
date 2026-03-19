@@ -15,15 +15,6 @@
           settings = {
             # Number of lines to search for text object
             n_lines = 50;
-            # Custom textobjects that extend 'a' (around) and 'i' (inside)
-            custom_textobjects = {
-              # Around operators: ao, ai, an, aa (around next/prev/all)
-              o = ["ao", "ai", "an", "ao", "aa"];
-              # Inside operators: ai, an, ao (inside next/prev/all)
-              i = ["ai", "an", "ao"];
-              # Function operators: af, if, ao (around next/prev/all function)
-              f = ["af", "if", "ao"];
-            };
           };
         };
 

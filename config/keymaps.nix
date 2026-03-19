@@ -341,15 +341,19 @@
     {
       key = "<C-l>";
       mode = "n";
-      options.silent = true;
-      options.desc = "Next buffer";
+      options = {
+        silent = true;
+        desc = "Next buffer";
+      };
       action = ":bnext<CR>";
     }
     {
       key = "<C-h>";
       mode = "n";
-      options.silent = true;
-      options.desc = "Previous buffer";
+      options = {
+        silent = true;
+        desc = "Previous buffer";
+      };
       action = ":bprevious<CR>";
     }
     {
@@ -382,15 +386,19 @@
     {
       key = "<leader>bd";
       mode = "n";
-      options.silent = true;
-      options.desc = "Delete buffer";
+      options = {
+        silent = true;
+        desc = "Delete buffer";
+      };
       action = ":bdelete<CR>";
     }
     {
       key = "<leader>bD";
       mode = "n";
-      options.silent = true;
-      options.desc = "Force delete buffer";
+      options = {
+        silent = true;
+        desc = "Force delete buffer";
+      };
       action = ":bdelete!<CR>";
     }
 
@@ -487,8 +495,10 @@
     {
       key = "<leader>qq";
       mode = "n";
-      options.silent = true;
-      options.desc = "Quit all";
+      options = {
+        silent = true;
+        desc = "Quit all";
+      };
       action = ":qa<CR>";
     }
 
@@ -1618,3 +1628,4 @@
       action = ":SessionSearch<CR>";
     }
   ];
+}

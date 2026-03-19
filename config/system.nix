@@ -7,7 +7,6 @@
   vimAlias = true;
   enableMan = false;
   enablePrintInit = true; # nixvim-print-init tool
-  nixpkgs.config.allowUnfree = true;
 
   clipboard.providers.wl-copy.enable = true;
   clipboard.providers.xclip.enable = false;
@@ -39,6 +38,13 @@
 
     # Python
     ruff
+
+    # Search and replace tools
+    ripgrep
+    gnused
+
+    # AI (if using ollama)
+    # ollama  # Uncomment if you have ollama installed
   ];
 
   extraPlugins = with pkgs.vimPlugins; [
