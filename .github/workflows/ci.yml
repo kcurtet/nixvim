@@ -16,8 +16,8 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      # Optional: Setup Cachix for caching
-      # Create a cache at https://cachix.org and add CACHIX_AUTH_TOKEN to repo secrets
+      # Cachix for Nix build caching (disabled by default)
+      # To enable: create cache at https://cachix.org, add CACHIX_AUTH_TOKEN secret, and set skipPush: false
       - uses: cachix/cachix-action@v14
         with:
           name: mycache
