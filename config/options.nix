@@ -29,7 +29,8 @@
     signcolumn = "yes";
     scrolloff = 8;
     sidescrolloff = 8;
-    wrap = false;
+    wrap = true;
+    linebreak = true;
     showmode = false;
     pumheight = 10;
     splitbelow = true;
@@ -59,5 +60,8 @@
 
     # File encoding
     fileencoding = "utf-8";
+
+    # Session options (for auto-session)
+    sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions";
   };
 }

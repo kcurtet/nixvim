@@ -1,12 +1,15 @@
 {
   plugins.snacks = {
-    enable = false;
+    enable = true;
     settings = {
       bigfile.enable = true;
-      dashboard.enable = false;
+      dashboard = {
+        enable = false;
+        enabled = false;  # Fully disable to prevent lazy.stats dependency
+      };
       input.enable = true;
       notifier = {
-        enable = true;
+        enable = false;  # Disabled - using noice.nvim for notifications
         timeout = 3000;
       };
       picker.enable = true;
