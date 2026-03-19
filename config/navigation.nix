@@ -5,7 +5,6 @@
       enable = true;
     };
     flash.enable = true;
-    project-nvim.enable = true;
 
     # Harpoon2 - Quick file navigation
     harpoon = {

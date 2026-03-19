@@ -5,6 +5,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixvim.url = "github:nix-community/nixvim";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-compat = {
+      url = "github:edolstra/flake-compat";
+      flake = false;
+    };
   };
 
   outputs = inputs@{ self, flake-parts, nixpkgs, ... }:
@@ -45,6 +49,15 @@
               nixvimConfigPath = "/home/kx/code/projects/personal/nixvim";
             }
           ];
+        };
+
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ self'.packages.default pkgs.nixpkgs-fmt ];
+
+          shellHook = ''
+            echo "✓ Nixvim development shell loaded"
+            echo "  Run 'nvim' to start Neovim with this configuration"
+          '';
         };
 
         checks = {
