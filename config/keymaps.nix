@@ -339,7 +339,7 @@
       action = "<nop>";
     }
     {
-      key = "<C-l>";
+      key = "<leader>bn";
       mode = "n";
       options = {
         silent = true;
@@ -348,7 +348,7 @@
       action = ":bnext<CR>";
     }
     {
-      key = "<C-h>";
+      key = "<leader>bp";
       mode = "n";
       options = {
         silent = true;
