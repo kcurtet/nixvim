@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   options = {
     nixosConfigPath = lib.mkOption {
       type = lib.types.str;
@@ -13,7 +14,7 @@
 
     nixvimConfigPath = lib.mkOption {
       type = lib.types.str;
-      default = "/home/kx/code/nixvim";
+      default = "/home/kx/code/projects/personal/nixvim";
       description = "Path to NixVim configuration";
     };
   };
