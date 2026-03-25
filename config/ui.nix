@@ -4,6 +4,7 @@
   extraConfigLua = ''
     require("transparent").clear_prefix("BufferLine") -- Clear the "BufferLine" prefix from the list of groups to make them transparent
     require("transparent").clear_prefix("WinBar")
+    require("transparent").clear_prefix("LuaLine")
   '';
 
   plugins = {
