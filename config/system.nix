@@ -2,7 +2,8 @@
   config,
   pkgs,
   ...
-}: {
+}:
+{
   viAlias = true;
   vimAlias = true;
   enableMan = false;
@@ -26,6 +27,7 @@
     nodePackages_latest.vscode-langservers-extracted # jsonls
     python312Packages.python-lsp-server
     rust-analyzer
+    rustfmt
     cargo
     rustc
     nixd

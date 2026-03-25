@@ -12,7 +12,7 @@
               jump_next = 'j',
               accept = 'l',
               refresh = 'gr',
-              open = '<M-CR>'
+              open = '<C-M-CR>'
             },
           },
           suggestion = {

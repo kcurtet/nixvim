@@ -14,6 +14,7 @@
     # Preview definitions in floating window
     goto-preview = {
       enable = true;
+
       settings = {
         # Window size
         width = 120;
