@@ -20,7 +20,7 @@
             auto_trigger = true,
             debounce = 75,
             keymap = {
-              accept = '<C-l>',
+              accept = '<M-CR>',
               accept_word = false,
               accept_line = false,
               next = '<M-j>',
