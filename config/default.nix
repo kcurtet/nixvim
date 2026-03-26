@@ -31,17 +31,13 @@
     ./snacks.nix
     ./codecompanion.nix
     ./copilot.nix
-    # New modules
     ./todo.nix
     ./trouble.nix
-    # ./telescope-addons.nix  # Extensions not packaged in nixvim
-    # ./illuminate.nix  # Not packaged in nixvim
     ./indent-blankline.nix
     ./spectre.nix
     ./yanky.nix
     ./grug-far.nix
-    # ./focus.nix  # Not packaged in nixvim
     ./tmux-zellij.nix
-    # ./ai-enhancements.nix  # gen.nvim not packaged in nixvim
+    ./sops.nix
   ];
 }
