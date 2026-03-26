@@ -4,12 +4,18 @@
   extraConfigLua = ''
     require("transparent").clear_prefix("BufferLine") -- Clear the "BufferLine" prefix from the list of groups to make them transparent
     require("transparent").clear_prefix("WinBar")
-    require("transparent").clear_prefix("LuaLine")
+    require("transparent").clear_prefix("lualine")
+    require("transparent").clear_prefix("WhichKey")
   '';
 
   plugins = {
     transparent = {
       enable = true;
+      settings = {
+        extra_groups = [
+          "NormalFloat"
+        ];
+      };
     };
     rainbow-delimiters.enable = true;
     colorizer.enable = true;

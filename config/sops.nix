@@ -1,14 +1,21 @@
 # ============================================================================
 # SOPS - Automatic encryption/decryption of secrets files
 # ============================================================================
-# Automatically decrypts secrets.yaml files on open and encrypts on save
 {
   config,
   lib,
   pkgs,
   ...
 }: {
-  # Autocommand to handle SOPS encrypted files
+  # Add sops binary to path
+  extraPackages = [pkgs.sops];
+
+  # nvim-sops plugin for manual encrypt/decrypt commands
+  extraPlugins = with pkgs.vimPlugins; [
+    nvim-sops
+  ];
+
+  # Autocommands for automatic encryption/decryption
   autoGroups = {
     sops-group = {
       clear = true;
@@ -17,17 +24,10 @@
 
   autoCmd = [
     {
-      # Decrypt on read (before reading the buffer)
-      event = ["BufReadPre"];
-      pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
-      callback = lib.mkForce null; # Clear any existing
-      group = "sops-group";
-    }
-    {
-      # Decrypt after reading (replace encrypted content with decrypted)
+      # Decrypt after reading if file contains ENC[
       event = ["BufReadPost"];
       pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
-      callback = ''
+      callback.__raw = ''
         function()
           local bufnr = vim.api.nvim_get_current_buf()
           local filepath = vim.api.nvim_buf_get_name(bufnr)
@@ -67,7 +67,7 @@
       # Encrypt before writing
       event = ["BufWritePre"];
       pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
-      callback = ''
+      callback.__raw = ''
         function()
           local bufnr = vim.api.nvim_get_current_buf()
           
@@ -79,11 +79,11 @@
           local filepath = vim.api.nvim_buf_get_name(bufnr)
           local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
           
-          -- Write decrypted content to temp file
+          -- Write current content to temp file
           local tmpfile = vim.fn.tempname()
           vim.fn.writefile(lines, tmpfile)
           
-          -- Encrypt using sops (encrypt in place)
+          -- Encrypt using sops (in place)
           local result = vim.fn.system({"sops", "--encrypt", "--in-place", tmpfile})
           if vim.v.shell_error ~= 0 then
             vim.notify("Failed to encrypt: " .. result, vim.log.levels.ERROR)
@@ -103,17 +103,17 @@
       # After writing, restore decrypted content in buffer
       event = ["BufWritePost"];
       pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
-      callback = ''
+      callback.__raw = ''
         function()
           local bufnr = vim.api.nvim_get_current_buf()
           
-          if not vim.b[bufnr].sops_encrypted and not vim.b[bufnr].sops_new then
+          if not vim.b[bufnr].sops_encrypted then
             return
           end
           
           local filepath = vim.api.nvim_buf_get_name(bufnr)
           
-          -- Read the encrypted file we just wrote and decrypt back to buffer
+          -- Decrypt the file we just wrote back into buffer
           local decrypted = vim.fn.systemlist({"sops", "--decrypt", filepath})
           if vim.v.shell_error ~= 0 then
             return -- Might fail if file wasn't actually encrypted
@@ -131,7 +131,7 @@
       # Mark new secrets files
       event = ["BufNewFile"];
       pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
-      callback = ''
+      callback.__raw = ''
         function()
           vim.b[vim.api.nvim_get_current_buf()].sops_new = true
         end
@@ -140,49 +140,25 @@
     }
   ];
 
-  # Command to manually toggle encryption status
-  userCommands = {
-    SopsEncrypt = {
-      command = ''
-        function()
-          vim.b.sops_encrypted = true
-          vim.notify("Marked for SOPS encryption on save", vim.log.levels.INFO)
-        end
-      '';
-      desc = "Mark current buffer for SOPS encryption";
-    };
-    SopsDecrypt = {
-      command = ''
-        function()
-          local filepath = vim.api.nvim_buf_get_name(0)
-          local decrypted = vim.fn.systemlist({"sops", "--decrypt", filepath})
-          if vim.v.shell_error ~= 0 then
-            vim.notify("Failed to decrypt: " .. table.concat(decrypted, "\n"), vim.log.levels.ERROR)
-            return
-          end
-          vim.api.nvim_buf_set_lines(0, 0, -1, false, decrypted)
-          vim.b.sops_encrypted = true
-          vim.notify("Decrypted", vim.log.levels.INFO)
-        end
-      '';
-      desc = "Manually decrypt current SOPS file";
-    };
-    SopsStatus = {
-      command = ''
-        function()
-          if vim.b.sops_encrypted then
-            print("SOPS: Encrypted (will encrypt on save)")
-          elseif vim.b.sops_new then
-            print("SOPS: New file (will encrypt on save)")
-          else
-            print("SOPS: Not managed")
-          end
-        end
-      '';
-      desc = "Show SOPS status for current buffer";
-    };
-  };
-
-  # Ensure sops is available
-  extraPackages = [pkgs.sops];
+  # Keybindings for manual control
+  keymaps = [
+    {
+      mode = "n";
+      key = "<leader>se";
+      action = ":SopsEncrypt<CR>";
+      options = {
+        desc = "SOPS encrypt current file";
+        silent = true;
+      };
+    }
+    {
+      mode = "n";
+      key = "<leader>sd";
+      action = ":SopsDecrypt<CR>";
+      options = {
+        desc = "SOPS decrypt current file";
+        silent = true;
+      };
+    }
+  ];
 }
