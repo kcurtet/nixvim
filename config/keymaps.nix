@@ -252,80 +252,43 @@
       action = ":Telescope current_buffer_fuzzy_find<CR>";
     }
 
-    # Window navigation
+    # Window navigation (Ctrl+hjkl handled by vim-tmux-navigator)
+    # Window swap (Ctrl+Shift+hjkl)
     {
-      key = "<M-h>";
+      key = "<C-H>";
       mode = "n";
       options = {
         silent = true;
-        desc = "Navigate left";
+        desc = "Move window left";
       };
-      action = "<C-w>h";
+      action = "<C-w>H";
     }
     {
-      key = "<M-j>";
+      key = "<C-J>";
       mode = "n";
       options = {
         silent = true;
-        desc = "Navigate down";
+        desc = "Move window down";
       };
-      action = "<C-w>j";
+      action = "<C-w>J";
     }
     {
-      key = "<M-k>";
+      key = "<C-K>";
       mode = "n";
       options = {
         silent = true;
-        desc = "Navigate up";
+        desc = "Move window up";
       };
-      action = "<C-w>k";
+      action = "<C-w>K";
     }
     {
-      key = "<M-l>";
+      key = "<C-L>";
       mode = "n";
       options = {
         silent = true;
-        desc = "Navigate right";
+        desc = "Move window right";
       };
-      action = "<C-w>l";
-    }
-
-    # Window resize
-    {
-      key = "<C-Up>";
-      mode = "n";
-      options = {
-        silent = true;
-        desc = "Increase window height";
-      };
-      action = ":resize +2<CR>";
-    }
-    {
-      key = "<C-Down>";
-      mode = "n";
-      options = {
-        silent = true;
-        desc = "Decrease window height";
-      };
-      action = ":resize -2<CR>";
-    }
-    {
-      key = "<C-Left>";
-      mode = "n";
-      options = {
-        silent = true;
-        desc = "Decrease window width";
-      };
-      action = ":vertical resize -2<CR>";
-    }
-    {
-      key = "<C-Right>";
-      mode = "n";
-      options = {
-        silent = true;
-        desc = "Increase window width";
-      };
-      action = ":vertical resize +2<CR>";
+      action = "<C-w>L";
     }
 
     # Buffer navigation
@@ -1088,9 +1051,32 @@
       mode = "n";
       options = {
         silent = true;
-        desc = "Rotate windows";
+        desc = "Enter resize mode (hjkl to resize, q/Esc to exit)";
       };
-      action = ":wincmd r<CR>";
+      action.__raw = ''
+        function()
+          local function exit_resize()
+            local keys = { 'h', 'l', 'j', 'k', 'H', 'L', 'J', 'K', 'q' }
+            for _, k in ipairs(keys) do
+              vim.keymap.del('n', k, { buffer = true })
+            end
+            vim.keymap.del('n', '<Esc>', { buffer = true })
+            print('Exited resize mode')
+          end
+          local opts = { buffer = true, silent = true }
+          vim.keymap.set('n', 'h', '<cmd>vertical resize -2<CR>', opts)
+          vim.keymap.set('n', 'l', '<cmd>vertical resize +2<CR>', opts)
+          vim.keymap.set('n', 'j', '<cmd>resize +2<CR>', opts)
+          vim.keymap.set('n', 'k', '<cmd>resize -2<CR>', opts)
+          vim.keymap.set('n', 'H', '<cmd>vertical resize -5<CR>', opts)
+          vim.keymap.set('n', 'L', '<cmd>vertical resize +5<CR>', opts)
+          vim.keymap.set('n', 'J', '<cmd>resize +5<CR>', opts)
+          vim.keymap.set('n', 'K', '<cmd>resize -5<CR>', opts)
+          vim.keymap.set('n', 'q', exit_resize, opts)
+          vim.keymap.set('n', '<Esc>', exit_resize, opts)
+          print('Resize mode: hjkl to resize, q/Esc to exit')
+        end
+      '';
     }
 
     # Tab navigation (prefix <leader>T)
