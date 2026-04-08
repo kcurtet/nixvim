@@ -22,9 +22,9 @@
 
     # LSPs (built-in: ts_ls, lua_ls, jsonls, pyright, rust_analyzer, nixd)
     # These are included by nixvim, but some need external tools
-    nodePackages_latest.typescript-language-server
+    typescript-language-server
     lua-language-server
-    nodePackages_latest.vscode-langservers-extracted # jsonls
+    vscode-langservers-extracted # jsonls
     python312Packages.python-lsp-server
     rust-analyzer
     rustfmt
@@ -36,7 +36,7 @@
     selene
     deadnix
     statix
-    nodePackages_latest.eslint
+    eslint
 
     # Python
     ruff
@@ -47,9 +47,5 @@
 
     # AI (if using ollama)
     # ollama  # Uncomment if you have ollama installed
-  ];
-
-  extraPlugins = with pkgs.vimPlugins; [
-    opencode-nvim
   ];
 }

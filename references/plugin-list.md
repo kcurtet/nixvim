@@ -349,7 +349,6 @@ Source: `/tmp/nixvim/plugins/by-name/` + `/tmp/nixvim/plugins/cmp/` + `/tmp/nixv
 | `parrot` | Parrot.nvim AI |
 | `windsurf-nvim` | Windsurf (Codeium) |
 | `windsurf-vim` | Windsurf vim plugin |
-| `opencode` | OpenCode AI |
 | `supermaven` | Supermaven AI |
 | `minuet` | Minuet AI completion |
 

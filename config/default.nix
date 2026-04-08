@@ -1,6 +1,7 @@
 {
   # Import all your configuration modules here
   imports = [
+    ./pi-nvim.nix
     ./nixos-path.nix
     ./system.nix
     ./options.nix

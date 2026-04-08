@@ -6,9 +6,10 @@
   lib,
   pkgs,
   ...
-}: {
+}:
+{
   # Add sops binary to path
-  extraPackages = [pkgs.sops];
+  extraPackages = [ pkgs.sops ];
 
   # nvim-sops plugin for manual encrypt/decrypt commands
   extraPlugins = with pkgs.vimPlugins; [
@@ -25,8 +26,13 @@
   autoCmd = [
     {
       # Decrypt after reading if file contains ENC[
-      event = ["BufReadPost"];
-      pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
+      event = [ "BufReadPost" ];
+      pattern = [
+        "secrets.yaml"
+        "*/secrets/*.yaml"
+        "*/secrets/*.yml"
+        "*.secret.yaml"
+      ];
       callback.__raw = ''
         function()
           local bufnr = vim.api.nvim_get_current_buf()
@@ -65,8 +71,13 @@
     }
     {
       # Encrypt before writing
-      event = ["BufWritePre"];
-      pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
+      event = [ "BufWritePre" ];
+      pattern = [
+        "secrets.yaml"
+        "*/secrets/*.yaml"
+        "*/secrets/*.yml"
+        "*.secret.yaml"
+      ];
       callback.__raw = ''
         function()
           local bufnr = vim.api.nvim_get_current_buf()
@@ -101,8 +112,13 @@
     }
     {
       # After writing, restore decrypted content in buffer
-      event = ["BufWritePost"];
-      pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
+      event = [ "BufWritePost" ];
+      pattern = [
+        "secrets.yaml"
+        "*/secrets/*.yaml"
+        "*/secrets/*.yml"
+        "*.secret.yaml"
+      ];
       callback.__raw = ''
         function()
           local bufnr = vim.api.nvim_get_current_buf()
@@ -129,8 +145,13 @@
     }
     {
       # Mark new secrets files
-      event = ["BufNewFile"];
-      pattern = ["secrets.yaml" "*/secrets/*.yaml" "*/secrets/*.yml" "*.secret.yaml"];
+      event = [ "BufNewFile" ];
+      pattern = [
+        "secrets.yaml"
+        "*/secrets/*.yaml"
+        "*/secrets/*.yml"
+        "*.secret.yaml"
+      ];
       callback.__raw = ''
         function()
           vim.b[vim.api.nvim_get_current_buf()].sops_new = true
