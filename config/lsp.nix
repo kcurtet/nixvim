@@ -3,7 +3,8 @@
   pkgs,
   lib,
   ...
-}: {
+}:
+{
   plugins.lsp = {
     enable = true;
     servers = {
@@ -31,27 +32,30 @@
         installCargo = true;
         installRustc = true;
       };
-      nixd = let
-        configPath = "(builtins.getFlake \"${config.nixosConfigPath}\")";
-      in {
-        enable = true;
-        settings = {
-          nixpkgs = {
-            expr = "import ${configPath}.inputs.nixpkgs { }";
-          };
-          formatting = {
-            command = ["nixfmt"];
-          };
-          options = {
-            nixos = {
-              expr = "${configPath}.nixosConfigurations.panther.options";
+      nixd =
+        let
+          configPath = "(builtins.getFlake \"${config.nixosConfigPath}\")";
+        in
+        {
+          enable = true;
+          autostart = false;
+          settings = {
+            nixpkgs = {
+              expr = "import ${configPath}.inputs.nixpkgs { }";
             };
-            home-manager = {
-              expr = "${configPath}.nixosConfigurations.panther.options.home-manager.users.type.getSubOptions []";
+            formatting = {
+              command = [ "nixfmt" ];
+            };
+            options = {
+              nixos = {
+                expr = "${configPath}.nixosConfigurations.panther.options";
+              };
+              home-manager = {
+                expr = "${configPath}.nixosConfigurations.panther.options.home-manager.users.type.getSubOptions []";
+              };
             };
           };
         };
-      };
 
       # Additional LSP servers
       gopls.enable = true;
